@@ -1,6 +1,16 @@
+import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
 from scholarly import scholarly
-import time
 
+# ================= PAGE CONFIG =================
+st.set_page_config(
+    page_title="Ajaz Ahmad Mir | Academic Portfolio",
+    page_icon="🎓",
+    layout="wide"
+)
+
+# ================= SCHOLAR FUNCTION =================
 @st.cache_data(ttl=86400)  # cache for 24 hours
 def get_scholar_data():
     try:
@@ -15,19 +25,8 @@ def get_scholar_data():
             "publications": len(author.get("publications", [])),
         }
         return data
-    except Exception as e:
+    except Exception:
         return None
-
-import streamlit as st
-import pandas as pd
-import matplotlib.pyplot as plt
-
-# ================= PAGE CONFIG =================
-st.set_page_config(
-    page_title="Ajaz Ahmad Mir | Academic Portfolio",
-    page_icon="🎓",
-    layout="wide"
-)
 
 # ================= SIDEBAR NAVIGATION =================
 st.sidebar.title("🧭 Navigation")
@@ -39,6 +38,7 @@ page = st.sidebar.radio(
 
 st.sidebar.markdown("---")
 st.sidebar.markdown("**📧 gid.ajaz@gmail.com**")
+st.sidebar.markdown("📱 +91-7006231956")
 st.sidebar.markdown(
     "[🎓 Google Scholar](https://scholar.google.ca/citations?user=90WNMHwAAAAJ&hl=en&oi=ao)"
 )
@@ -56,7 +56,7 @@ if page == "🏠 Home":
 
     with col2:
         st.title("Ajaz Ahmad Mir")
-        st.subheader("Ph.D. Research Scholar | Hydraulic & ML Research")
+        st.subheader("Ph.D. Research Scholar | Hydraulics & ML")
 
         st.write(
             """
@@ -69,14 +69,26 @@ if page == "🏠 Home":
 
     st.markdown("---")
 
-    # ===== QUICK METRICS =====
+    # ===== LIVE METRICS =====
     st.subheader("📈 Academic Snapshot")
 
+    scholar_data = get_scholar_data()
+
     m1, m2, m3, m4 = st.columns(4)
-    m1.metric("Publications", "8")
-    m2.metric("Book Chapters", "2")
-    m3.metric("Patent", "1")
-    m4.metric("GATE Score", "463")
+
+    if scholar_data:
+        m1.metric("Publications", scholar_data["publications"])
+        m2.metric("Citations", scholar_data["citations"])
+        m3.metric("h-index", scholar_data["hindex"])
+        m4.metric("i10-index", scholar_data["i10index"])
+    else:
+        m1.metric("Publications", "—")
+        m2.metric("Citations", "—")
+        m3.metric("h-index", "—")
+        m4.metric("i10-index", "—")
+        st.warning("Google Scholar data temporarily unavailable.")
+
+    st.success("✅ Open to Postdoctoral Positions and Research Collaborations")
 
 # ================= EDUCATION =================
 elif page == "🎓 Education":
@@ -106,31 +118,36 @@ elif page == "📚 Publications":
 
     st.title("📚 Publications")
 
-    pubs = [
-        "Natural Hazards (2025) — Bed shear stress prediction using ML",
-        "Scientific Reports (2024) — Ensemble bedload prediction",
-        "Water Science & Technology (2024) — Flow resistance ML",
-        "JWMM (2024) — Review on sediment transport",
-        "JMCWM (2022) — Waste management case study",
-        "Journal of Hydroinformatics (2023) — Friction factor ML",
-        "Asian Journal of Civil Engineering (2023) — Concrete ML",
-        "Iranian JST (2024) — Flexural strength prediction",
+    pubs_data = [
+        [2025, "Natural Hazards", "Bed shear stress prediction using ML", 1, "Q1"],
+        [2024, "Scientific Reports", "Ensemble bedload prediction", 8, "Q1"],
+        [2023, "Water Science & Technology", "Flow resistance prediction", 20, "Q2"],
+        [2023, "Journal of Hydroinformatics", "Friction factor ML", 27, "Q2"],
+        [2024, "Asian Journal of Civil Engineering", "Fly ash concrete ML", 28, "Q2"],
+        [2025, "Iranian JST", "Flexural strength prediction", 34, "Q2"],
+        [2023, "Materials Today Proceedings", "3D printing construction review", 107, "Q1"],
+        [2022, "J. Material Cycles & Waste Mgmt", "Methane waste case study", 20, "Q2"],
+        [2024, "Journal of Water Management Modeling", "Steep channel review", 19, "Q3"],
+        [2022, "Pharma Innovation Journal", "Hydroponics sustainability", 15, "NA"],
     ]
 
-    for p in pubs:
-        st.markdown(f"• {p}")
+    df_pubs = pd.DataFrame(
+        pubs_data,
+        columns=["Year", "Journal", "Title", "Citations", "Quartile"]
+    )
+
+    st.dataframe(df_pubs, use_container_width=True)
 
 # ================= RESEARCH METRICS =================
 elif page == "📊 Research Metrics":
 
     st.title("📊 Research Metrics")
 
-    # Sample research data
+    # Publications per year
     data = {
         "Year": ["2022", "2023", "2024", "2025"],
-        "Publications": [1, 3, 3, 1],
+        "Publications": [2, 3, 4, 1],
     }
-
     df = pd.DataFrame(data)
 
     st.subheader("📈 Publications by Year")
@@ -138,12 +155,36 @@ elif page == "📊 Research Metrics":
     fig, ax = plt.subplots()
     ax.bar(df["Year"], df["Publications"])
     ax.set_xlabel("Year")
-    ax.set_ylabel("Number of Publications")
+    ax.set_ylabel("Publications")
     ax.set_title("Research Productivity")
-
     st.pyplot(fig)
 
-    st.info("Tip: Connect Google Scholar API later for live metrics.")
+    # Citation distribution
+    st.subheader("📊 Citation Impact by Paper")
+
+    citation_data = {
+        "Paper": [
+            "3D Printing Review",
+            "Flexural Strength ML",
+            "Fly Ash Concrete",
+            "Friction Factor ML",
+            "Flow Resistance",
+            "Waste Management",
+            "Steep Channel Review",
+            "Hydroponics",
+            "Bedload Prediction",
+            "Bed Shear Stress",
+        ],
+        "Citations": [107, 34, 28, 27, 20, 20, 19, 15, 8, 1],
+    }
+
+    df_cit = pd.DataFrame(citation_data)
+
+    fig2, ax2 = plt.subplots()
+    ax2.barh(df_cit["Paper"], df_cit["Citations"])
+    ax2.set_xlabel("Citations")
+    ax2.set_title("Citation Impact by Publication")
+    st.pyplot(fig2)
 
 # ================= SKILLS =================
 elif page == "🛠 Skills":
@@ -177,4 +218,4 @@ elif page == "📄 CV":
 
 # ================= FOOTER =================
 st.markdown("---")
-st.caption("© 2026 Ajaz Ahmad Mir | Premium Academic Portfolio")
+st.caption("© 2026 Ajaz Ahmad Mir | Elite Academic Portfolio")
