@@ -1,165 +1,160 @@
 import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
 
 # ================= PAGE CONFIG =================
 st.set_page_config(
-    page_title="Ajaz Ahmad Mir | Research Portfolio",
-    page_icon="👤",
-    layout="centered"
+    page_title="Ajaz Ahmad Mir | Academic Portfolio",
+    page_icon="🎓",
+    layout="wide"
 )
 
-# ================= SIDEBAR =================
-with st.sidebar:
-    st.header("📬 Contact")
+# ================= SIDEBAR NAVIGATION =================
+st.sidebar.title("🧭 Navigation")
+page = st.sidebar.radio(
+    "Go to",
+    ["🏠 Home", "🎓 Education", "📚 Publications",
+     "📊 Research Metrics", "🛠 Skills", "📄 CV"]
+)
 
-    st.write("📧 gid.ajaz@gmail.com")
-    st.write("📱 +91-7006231956")
-    st.write("📍 NIT Jalandhar, Punjab, India")
+st.sidebar.markdown("---")
+st.sidebar.markdown("**📧 gid.ajaz@gmail.com**")
+st.sidebar.markdown(
+    "[🎓 Google Scholar](https://scholar.google.ca/citations?user=90WNMHwAAAAJ&hl=en&oi=ao)"
+)
+
+# ================= HOME =================
+if page == "🏠 Home":
+
+    col1, col2 = st.columns([1, 3])
+
+    with col1:
+        try:
+            st.image("profile.jpg", width=220)
+        except:
+            st.image("https://via.placeholder.com/220")
+
+    with col2:
+        st.title("Ajaz Ahmad Mir")
+        st.subheader("Ph.D. Research Scholar | Hydraulic & ML Research")
+
+        st.write(
+            """
+            Visiting Doctoral Fellow at **University of Alberta** and
+            Ph.D. scholar at **Dr B R Ambedkar NIT Jalandhar**.
+            Research focuses on hydraulics, turbulence, and
+            machine learning applications in water resources engineering.
+            """
+        )
 
     st.markdown("---")
-    st.header("🔗 Research Profiles")
 
-    st.markdown(
-        "[🎓 Google Scholar]"
-        "(https://scholar.google.ca/citations?user=90WNMHwAAAAJ&hl=en&oi=ao)"
-    )
+    # ===== QUICK METRICS =====
+    st.subheader("📈 Academic Snapshot")
 
-# ================= HEADER =================
-col1, col2 = st.columns([1, 2])
-
-with col1:
-    try:
-        st.image("profile.jpg", width=180)
-    except:
-        st.image("https://via.placeholder.com/180", width=180)
-
-with col2:
-    st.title("Ajaz Ahmad Mir")
-    st.markdown("### Ph.D. Research Scholar")
-
-    st.write("Dr B R Ambedkar National Institute of Technology Jalandhar")
-    st.write("Visiting Doctoral Fellow — University of Alberta")
-
-st.markdown("---")
+    m1, m2, m3, m4 = st.columns(4)
+    m1.metric("Publications", "8")
+    m2.metric("Book Chapters", "2")
+    m3.metric("Patent", "1")
+    m4.metric("GATE Score", "463")
 
 # ================= EDUCATION =================
-st.header("🎓 Education")
+elif page == "🎓 Education":
 
-st.markdown("""
-**University of Alberta, Canada**  
-Overseas Visiting Doctoral Fellow (ANRF/OVDF)  
-*Sept 2024 – Aug 2025*
+    st.title("🎓 Education")
 
-**NIT Jalandhar, Punjab, India**  
-Ph.D. in Water Resources Engineering  
-*2022 – Ongoing*
+    st.markdown("""
+    **University of Alberta, Canada**  
+    Overseas Visiting Doctoral Fellow (ANRF/OVDF)  
+    *Sept 2024 – Aug 2025*
 
-**NIT Srinagar, J&K, India**  
-M.Tech in Water Resource Engineering — CGPA: 7.23  
-*2019 – 2021*
+    **NIT Jalandhar, India**  
+    Ph.D. Water Resources Engineering  
+    *2022 – Ongoing*
 
-**University of Kashmir, J&K, India**  
-B.E. in Civil Engineering — 76.6%  
-*2014 – 2019*
-""")
+    **NIT Srinagar, India**  
+    M.Tech Water Resource Engineering — CGPA: 7.23  
+    *2019 – 2021*
+
+    **University of Kashmir, India**  
+    B.E. Civil Engineering — 76.6%  
+    *2014 – 2019*
+    """)
 
 # ================= PUBLICATIONS =================
-st.header("📚 Publications")
+elif page == "📚 Publications":
 
-st.markdown("""
-• Optimizing bed shear stress prediction in open flow channels: heuristic ML techniques. *Natural Hazards*, 2025.  
-• Comparative ensemble approach to bedload prediction using metaheuristic ML. *Scientific Reports*, 2024.  
-• ML approaches for prediction of flow resistance in alluvial channels. *Water Science and Technology*, 2024.  
-• Review on sediment transport and hazards in steep channels. *Journal of Water Management Modeling*, 2024.  
-• Methane gas and solid waste management in Srinagar city. *Journal of Material Cycles and Waste Management*, 2022.  
-• Friction factor prediction in mobile bed channels. *Journal of Hydroinformatics*, 2023.  
-• Flow of fly ash and slag-based concrete using ML. *Asian Journal of Civil Engineering*, 2023.  
-• Flexural strength prediction in recycled aggregate concrete. *Iranian Journal of Science and Technology*, 2024.
-""")
+    st.title("📚 Publications")
 
-# ================= PATENT =================
-st.header("🧪 Patent & Industrial Design")
+    pubs = [
+        "Natural Hazards (2025) — Bed shear stress prediction using ML",
+        "Scientific Reports (2024) — Ensemble bedload prediction",
+        "Water Science & Technology (2024) — Flow resistance ML",
+        "JWMM (2024) — Review on sediment transport",
+        "JMCWM (2022) — Waste management case study",
+        "Journal of Hydroinformatics (2023) — Friction factor ML",
+        "Asian Journal of Civil Engineering (2023) — Concrete ML",
+        "Iranian JST (2024) — Flexural strength prediction",
+    ]
 
-st.markdown("""
-**Next-Gen Hydraulic Lab Trolley with Precision Control and Instrument Integration**  
-Design No.: 475322-001 (Class 10-04)  
-Registered with Patent Office, Government of India  
-Date of Registration: 29 Sept 2025 | Issue: 24 Dec 2025  
+    for p in pubs:
+        st.markdown(f"• {p}")
 
-Co-inventors: Shakeel Ahmad Rather, Mahesh Patel, Satyender Singh, Shailza Sharma  
-Institutional Collaboration: NIT Jalandhar & ADK Instruments
-""")
+# ================= RESEARCH METRICS =================
+elif page == "📊 Research Metrics":
 
-# ================= PROJECTS =================
-st.header("🚀 Projects Assisted")
+    st.title("📊 Research Metrics")
 
-st.markdown("""
-**SPARC, MHRD Govt. of India**  
-AI/ML-driven flood prediction and hazard mapping in Himalayan regions  
-Funding: ₹60 Lakhs
-""")
+    # Sample research data
+    data = {
+        "Year": ["2022", "2023", "2024", "2025"],
+        "Publications": [1, 3, 3, 1],
+    }
 
-# ================= PRESENTATIONS =================
-st.header("🖼 Poster Presentations")
+    df = pd.DataFrame(data)
 
-st.markdown("""
-• University of Alberta (2025): Water Quality Index using PCA + hybrid ML  
-• CSCE, University of Alberta (2025): Sediment transport modelling using ensemble ML
-""")
+    st.subheader("📈 Publications by Year")
 
-# ================= CONFERENCES =================
-st.header("🎤 Conferences & Workshops")
+    fig, ax = plt.subplots()
+    ax.bar(df["Year"], df["Publications"])
+    ax.set_xlabel("Year")
+    ax.set_ylabel("Number of Publications")
+    ax.set_title("Research Productivity")
 
-st.markdown("""
-• IAHR-APD, IIT Madras (2022)  
-• IAHR Young Professionals Congress (2022)  
-• Hydraulics Measurement Techniques — NIT Rourkela (2024)  
-• Urban Water Management — GNDEC Ludhiana (2023)  
-• Machine Learning with Python — NIT Jalandhar (2022)
-""")
+    st.pyplot(fig)
 
-# ================= BOOK CHAPTERS =================
-st.header("📖 Book Chapters")
-
-st.markdown("""
-• Springer Nature (2025): Technological developments in river morphology  
-• Geoenvironmental Engineering (2025): Hydrogeological study of soil and water contamination
-""")
-
-# ================= ACHIEVEMENTS =================
-st.header("🏆 Achievements & Fellowships")
-
-st.markdown("""
-• GATE Qualified (2019) — Score: 463  
-• ANRF / SERB Overseas Fellowship — $2000/month  
-• PhD Fellowship — NIT Jalandhar (₹42,000/month)  
-• MTech GATE Fellowship — NIT Srinagar  
-• Minority Scholarship — University of Kashmir  
-• Session Chair — ICIDEAIA-2025
-""")
+    st.info("Tip: Connect Google Scholar API later for live metrics.")
 
 # ================= SKILLS =================
-st.header("🛠 Skills")
+elif page == "🛠 Skills":
 
-st.markdown("""
-**Technical:** Machine Learning, Hydraulics, ANSYS, MATLAB, WaterGems  
-**Programming:** Python, MATLAB  
-**Soft Skills:** Teaching, Project Writing, Team Work
-""")
+    st.title("🛠 Skills")
 
-# ================= CV DOWNLOAD =================
-st.header("📄 Download CV")
+    st.subheader("Technical")
+    st.write("Machine Learning, Hydraulics, ANSYS, MATLAB, WaterGems")
 
-try:
-    with open("Ajaz_Ahmad_Mir_CV.pdf", "rb") as file:
-        st.download_button(
-            label="⬇️ Download Full CV",
-            data=file,
-            file_name="Ajaz_Ahmad_Mir_CV.pdf",
-            mime="application/pdf",
-        )
-except:
-    st.info("Upload your CV PDF to enable download.")
+    st.subheader("Programming")
+    st.write("Python, MATLAB")
+
+    st.subheader("Soft Skills")
+    st.write("Teaching, Project Writing, Team Work")
+
+# ================= CV =================
+elif page == "📄 CV":
+
+    st.title("📄 Curriculum Vitae")
+
+    try:
+        with open("Ajaz_Ahmad_Mir_CV.pdf", "rb") as file:
+            st.download_button(
+                label="⬇️ Download Full CV",
+                data=file,
+                file_name="Ajaz_Ahmad_Mir_CV.pdf",
+                mime="application/pdf",
+            )
+    except:
+        st.warning("Please upload Ajaz_Ahmad_Mir_CV.pdf to repository.")
 
 # ================= FOOTER =================
 st.markdown("---")
-st.caption("© 2026 Ajaz Ahmad Mir | Streamlit Research Portfolio")
+st.caption("© 2026 Ajaz Ahmad Mir | Premium Academic Portfolio")
