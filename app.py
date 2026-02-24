@@ -212,9 +212,9 @@ if page == "🏠 Home":
             <div class='about-text'>
             I am a Ph.D. researcher working in the field of <b>hydraulics,
             turbulence, and machine learning applications in water resources
-            engineering</b>. My research focuses on open channel flow,
-            sediment transport, bridge pier scour, and data-driven hydraulic
-            modelling.
+            engineering</b>. My research focuses on open channel flow, hydraulics, 
+            sediment transport, and data-driven hydraulic modelling in steep mountain channels.
+            I was also SERB/ANRF OVDF fellow at University of Alberta, Canada 
             </div>
             """,
             unsafe_allow_html=True,
@@ -234,7 +234,9 @@ if page == "🏠 Home":
             • Open Channel Flow  
             • Turbulence  
             • Machine Learning  
-            • Sediment Transport  
+            • Sediment Transport 
+            • Bedforms
+            • Roughness in steep channels
             """)
 
         # ----- EDUCATION -----
@@ -304,8 +306,6 @@ Registered with the Patent Office, Government of India
 Date of Registration: 29 September 2025  
 Date of Issue: 24 December 2025  
 
-**Co-inventors:** Shakeel Ahmad Rather, Mahesh Patel,  
-Satyender Singh, Shailza Sharma  
 
 **Institutional Collaboration:**  
 Dr B R Ambedkar National Institute of Technology Jalandhar and ADK Instruments
