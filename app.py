@@ -51,16 +51,13 @@ if page == "🏠 Home":
     # ===== COMPACT CSS =====
     st.markdown("""
     <style>
-    /* Reduce top padding */
     .block-container {
-        padding-top: 1.5rem;
+        padding-top: 1.2rem;
         padding-bottom: 1rem;
-        max-width: 1100px;
+        max-width: 1050px;
     }
-
-    /* Typography */
     .name {
-        font-size: 36px;
+        font-size: 34px;
         font-weight: 700;
         margin-bottom: 0px;
     }
@@ -68,27 +65,27 @@ if page == "🏠 Home":
         font-size: 18px;
         color: #2aa198;
         margin-top: 0px;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
     }
     .section-title {
-        font-size: 24px;
+        font-size: 22px;
         font-weight: 600;
-        margin-top: 10px;
-        margin-bottom: 5px;
+        margin-top: 8px;
+        margin-bottom: 4px;
     }
     .about-text {
-        font-size: 16px;
+        font-size: 15.5px;
         line-height: 1.6;
     }
     </style>
     """, unsafe_allow_html=True)
 
-    # ===== MAIN HERO (TIGHTER RATIO) =====
-    left, right = st.columns([0.9, 2.1], gap="small")
+    # ===== MAIN HERO =====
+    left, right = st.columns([1, 2], gap="small")
 
     # ---------- LEFT ----------
     with left:
-        st.image("profile.png.png", width=200)
+        st.image("profile.png.png", width=190)
 
         st.markdown(
             "<div class='name'>Ajaz Ahmad Mir</div>",
@@ -127,10 +124,10 @@ if page == "🏠 Home":
             <div class='about-text'>
             I am a Ph.D. researcher working in the field of <b>hydraulics,
             turbulence, and machine learning applications in water resources
-            engineering</b>. My research focuses on open channel flow, hydraulics, 
-            sediment transport, and data-driven hydraulic modelling in steep mountain channels.
-            I was also SERB/ANRF OVDF fellow at University of Alberta, Canada 
-            
+            engineering</b>. My research focuses on open channel flow,
+            sediment transport, and data-driven hydraulic modelling in
+            steep mountain channels. I was also SERB/ANRF OVDF fellow
+            at University of Alberta, Canada.
             </div>
             """,
             unsafe_allow_html=True,
@@ -138,7 +135,6 @@ if page == "🏠 Home":
 
         colA, colB = st.columns(2, gap="small")
 
-        # ----- INTERESTS -----
         with colA:
             st.markdown(
                 "<div class='section-title'>Interests</div>",
@@ -150,9 +146,10 @@ if page == "🏠 Home":
             • Turbulence  
             • Machine Learning  
             • Sediment Transport  
+            • Bedforms  
+            • Roughness in steep channels  
             """)
 
-        # ----- EDUCATION -----
         with colB:
             st.markdown(
                 "<div class='section-title'>Education</div>",
@@ -168,6 +165,26 @@ if page == "🏠 Home":
             🎓 **B.E. Civil Engineering**  
             University of Kashmir, 2014–2019  
             """)
+
+    # ===== METRICS =====
+    st.markdown("---")
+    st.subheader("📈 Academic Snapshot")
+
+    scholar_data = get_scholar_data()
+    m1, m2, m3, m4 = st.columns(4)
+
+    if scholar_data:
+        m1.metric("Publications", scholar_data["publications"])
+        m2.metric("Citations", scholar_data["citations"])
+        m3.metric("h-index", scholar_data["hindex"])
+        m4.metric("i10-index", scholar_data["i10index"])
+    else:
+        m1.metric("Publications", "—")
+        m2.metric("Citations", "—")
+        m3.metric("h-index", "—")
+        m4.metric("i10-index", "—")
+
+    st.success("✅ Open to Postdoctoral Positions and Research Collaborations")
 
     # ---------- LEFT PANEL ----------
     with left:
