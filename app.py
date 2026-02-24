@@ -239,7 +239,7 @@ elif page == "📄 CV":
     st.title("📄 Curriculum Vitae")
 
     try:
-        with open("cv AJAZ AHMAD MIR.pdf", "rb") as file:
+        with open("ajaz_cv_2_page 30 dec 25.pdf", "rb") as file:
             st.download_button(
                 label="⬇️ Download Full CV",
                 data=file,
