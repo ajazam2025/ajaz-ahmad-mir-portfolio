@@ -45,29 +45,121 @@ st.sidebar.markdown("[🎓 Google Scholar](https://scholar.google.ca/citations?u
 st.sidebar.markdown("[🆔 ORCID](https://orcid.org/0000-0002-4164-4027)")
 
 # ================= HOME =================
+# ================= HOME =================
 if page == "🏠 Home":
 
-    col1, col2 = st.columns([1, 3])
+    # ===== CUSTOM CSS (makes it look modern) =====
+    st.markdown("""
+    <style>
+    .name {
+        font-size: 40px;
+        font-weight: 700;
+        margin-bottom: 0px;
+    }
+    .role {
+        font-size: 20px;
+        color: #2aa198;
+        margin-top: 0px;
+    }
+    .section-title {
+        font-size: 26px;
+        font-weight: 600;
+        margin-top: 20px;
+    }
+    .about-text {
+        font-size: 17px;
+        line-height: 1.7;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
-    # ✅ FIXED IMAGE NAME
-    with col1:
-        try:
-            st.image("profile.png.png", width=220)
-        except:
-            st.image("https://via.placeholder.com/220")
+    # ===== MAIN TWO-COLUMN HERO =====
+    left, right = st.columns([1, 2])
 
-    with col2:
-        st.title("Ajaz Ahmad Mir")
-        st.subheader("Ph.D. Research Scholar | Hydraulics & Machine Learning")
+    # ---------- LEFT PANEL ----------
+    with left:
+        st.image("profile.png.png", width=220)
 
-        st.write("""
-        Visiting Doctoral Fellow at **University of Alberta** and
-        Ph.D. scholar at **Dr B R Ambedkar NIT Jalandhar**.
-        Research focuses on hydraulics, turbulence, sediment transport,
-        and machine learning applications in water resources engineering.
+        st.markdown(
+            "<div class='name'>Ajaz Ahmad Mir</div>",
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            "<div class='role'>PhD Research Scholar</div>",
+            unsafe_allow_html=True,
+        )
+
+        st.markdown("""
+        **University of Alberta**  
+        **Dr B R Ambedkar NIT Jalandhar**
         """)
 
-    st.markdown("---")
+        st.markdown("---")
+
+        st.markdown("📧 gid.ajaz@gmail.com")
+        st.markdown("📱 +91-7006231956")
+
+        st.markdown(
+            "[🎓 Google Scholar](https://scholar.google.ca/citations?user=90WNMHwAAAAJ&hl=en&oi=ao)"
+        )
+        st.markdown(
+            "[🆔 ORCID](https://orcid.org/0000-0002-4164-4027)"
+        )
+
+    # ---------- RIGHT PANEL ----------
+    with right:
+
+        st.markdown(
+            "<div class='section-title'>About me</div>",
+            unsafe_allow_html=True,
+        )
+
+        st.markdown(
+            """
+            <div class='about-text'>
+            I am a Ph.D. researcher working in the field of <b>hydraulics,
+            turbulence, and machine learning applications in water resources
+            engineering</b>. My research focuses on open channel flow,
+            sediment transport, bridge pier scour, and data-driven hydraulic
+            modelling.
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        # ===== INTERESTS + EDUCATION SIDE BY SIDE =====
+        colA, colB = st.columns(2)
+
+        # ----- INTERESTS -----
+        with colA:
+            st.markdown(
+                "<div class='section-title'>Interests</div>",
+                unsafe_allow_html=True,
+            )
+            st.markdown("""
+            • Experimental Hydraulics  
+            • Open Channel Flow  
+            • Turbulence  
+            • Machine Learning  
+            • Sediment Transport  
+            """)
+
+        # ----- EDUCATION -----
+        with colB:
+            st.markdown(
+                "<div class='section-title'>Education</div>",
+                unsafe_allow_html=True,
+            )
+            st.markdown("""
+            🎓 **PhD, Water Resources Engineering**  
+            NIT Jalandhar, 2022–Present  
+
+            🎓 **MTech, Water Resource Engineering**  
+            NIT Srinagar, 2019–2021  
+
+            🎓 **B.E. Civil Engineering**  
+            University of Kashmir, 2014–2019  
+            """)
 
     # ===== LIVE METRICS =====
     st.subheader("📈 Academic Snapshot")
