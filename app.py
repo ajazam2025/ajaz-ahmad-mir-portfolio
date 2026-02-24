@@ -11,7 +11,7 @@ st.set_page_config(
 )
 
 # ================= SCHOLAR FUNCTION =================
-@st.cache_data(ttl=86400)  # cache for 24 hours
+@st.cache_data(ttl=86400)
 def get_scholar_data():
     try:
         author = scholarly.search_author_id("90WNMHwAAAAJ")
@@ -28,7 +28,14 @@ def get_scholar_data():
     except Exception:
         return None
 
-# ================= SIDEBAR NAVIGATION =================
+# ================= SIDEBAR =================
+st.sidebar.title("🧭 Navigation")
+page = st.sidebar.radio(
+    "Go to",
+    ["🏠 Home", "🎓 Education", "📚 Publications",
+     "📊 Research Metrics", "🛠 Skills", "📄 CV"]
+)
+
 st.sidebar.markdown("---")
 st.sidebar.markdown("### 📬 Contact")
 
@@ -37,9 +44,14 @@ st.sidebar.markdown("📧 ajaz1@ualberta.ca")
 st.sidebar.markdown("📧 gid.ajaz@gmail.com")
 st.sidebar.markdown("📱 +91-7006231956")
 
+st.sidebar.markdown("### 🔗 Profiles")
 st.sidebar.markdown(
     "[🎓 Google Scholar](https://scholar.google.ca/citations?user=90WNMHwAAAAJ&hl=en&oi=ao)"
 )
+st.sidebar.markdown(
+    "[🆔 ORCID](https://orcid.org/0000-0002-4164-4027)"
+)
+
 # ================= HOME =================
 if page == "🏠 Home":
 
@@ -53,14 +65,14 @@ if page == "🏠 Home":
 
     with col2:
         st.title("Ajaz Ahmad Mir")
-        st.subheader("Ph.D. Research Scholar | Hydraulics & ML")
+        st.subheader("Ph.D. Research Scholar | Hydraulics & Machine Learning")
 
         st.write(
             """
             Visiting Doctoral Fellow at **University of Alberta** and
             Ph.D. scholar at **Dr B R Ambedkar NIT Jalandhar**.
-            Research focuses on hydraulics, turbulence, and
-            machine learning applications in water resources engineering.
+            Research focuses on hydraulics, turbulence, sediment transport,
+            and machine learning applications in water resources engineering.
             """
         )
 
@@ -97,7 +109,7 @@ elif page == "🎓 Education":
     Overseas Visiting Doctoral Fellow (ANRF/OVDF)  
     *Sept 2024 – Aug 2025*
 
-    **NIT Jalandhar, India**  
+    **Dr B R Ambedkar NIT Jalandhar, India**  
     Ph.D. Water Resources Engineering  
     *2022 – Ongoing*
 
@@ -136,19 +148,20 @@ elif page == "📚 Publications":
 
         "Sankalp M, Gondwal A, Agnihotri AK, et al (2024) Hydrogeological study of contamination of soil and water in the vicinity of municipal dumping ground: A case study. Lecture Notes in Civil Engineering 508:219–235. https://doi.org/10.1007/978-981-97-3823-6_19",
 
-        "Singh R, Tipu RK, Mir AA, Patel M (2024) Predictive modelling of flexural strength in recycled aggregate-based concrete: A comprehensive approach with machine learning and global sensitivity analysis. Iranian Journal of Science and Technology. https://doi.org/10.1007/S40996-024-01502-W",
+        "Singh R, Tipu RK, Mir AA, Patel M (2024) Predictive modelling of flexural strength in recycled aggregate-based concrete. Iranian Journal of Science and Technology. https://doi.org/10.1007/S40996-024-01502-W",
 
-        "Kumar R, Rathore A, Singh R, et al (2024) Prognosis of flow of fly ash and blast furnace slag-based concrete: Leveraging advanced machine learning algorithms. Asian Journal of Civil Engineering 25:2483–2497. https://doi.org/10.1007/s42107-023-00922-9",
+        "Kumar R, Rathore A, Singh R, et al (2024) Prognosis of flow of fly ash and blast furnace slag-based concrete. Asian Journal of Civil Engineering 25:2483–2497. https://doi.org/10.1007/s42107-023-00922-9",
     ]
 
     for i, ref in enumerate(refs, 1):
         st.markdown(f"**{i}.** {ref}")
+
 # ================= RESEARCH METRICS =================
 elif page == "📊 Research Metrics":
 
     st.title("📊 Research Metrics")
 
-    # Publications per year
+    # Publications per year chart
     data = {
         "Year": ["2022", "2023", "2024", "2025"],
         "Publications": [2, 3, 4, 1],
@@ -163,33 +176,6 @@ elif page == "📊 Research Metrics":
     ax.set_ylabel("Publications")
     ax.set_title("Research Productivity")
     st.pyplot(fig)
-
-    # Citation distribution
-    st.subheader("📊 Citation Impact by Paper")
-
-    citation_data = {
-        "Paper": [
-            "3D Printing Review",
-            "Flexural Strength ML",
-            "Fly Ash Concrete",
-            "Friction Factor ML",
-            "Flow Resistance",
-            "Waste Management",
-            "Steep Channel Review",
-            "Hydroponics",
-            "Bedload Prediction",
-            "Bed Shear Stress",
-        ],
-        "Citations": [107, 34, 28, 27, 20, 20, 19, 15, 8, 1],
-    }
-
-    df_cit = pd.DataFrame(citation_data)
-
-    fig2, ax2 = plt.subplots()
-    ax2.barh(df_cit["Paper"], df_cit["Citations"])
-    ax2.set_xlabel("Citations")
-    ax2.set_title("Citation Impact by Publication")
-    st.pyplot(fig2)
 
 # ================= SKILLS =================
 elif page == "🛠 Skills":
@@ -219,7 +205,7 @@ elif page == "📄 CV":
                 mime="application/pdf",
             )
     except:
-        st.warning("Please upload Ajaz_Ahmad_Mir_CV.pdf to repository.")
+        st.warning("Please upload your CV PDF to the repository.")
 
 # ================= FOOTER =================
 st.markdown("---")
