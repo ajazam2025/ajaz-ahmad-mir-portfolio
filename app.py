@@ -29,20 +29,17 @@ def get_scholar_data():
         return None
 
 # ================= SIDEBAR NAVIGATION =================
-st.sidebar.title("🧭 Navigation")
-page = st.sidebar.radio(
-    "Go to",
-    ["🏠 Home", "🎓 Education", "📚 Publications",
-     "📊 Research Metrics", "🛠 Skills", "📄 CV"]
-)
-
 st.sidebar.markdown("---")
-st.sidebar.markdown("**📧 gid.ajaz@gmail.com**")
+st.sidebar.markdown("### 📬 Contact")
+
+st.sidebar.markdown("📧 ajazam.ce.21@nitj.ac.in")
+st.sidebar.markdown("📧 ajaz1@ualberta.ca")
+st.sidebar.markdown("📧 gid.ajaz@gmail.com")
 st.sidebar.markdown("📱 +91-7006231956")
+
 st.sidebar.markdown(
     "[🎓 Google Scholar](https://scholar.google.ca/citations?user=90WNMHwAAAAJ&hl=en&oi=ao)"
 )
-
 # ================= HOME =================
 if page == "🏠 Home":
 
@@ -118,26 +115,34 @@ elif page == "📚 Publications":
 
     st.title("📚 Publications")
 
-    pubs_data = [
-        [2025, "Natural Hazards", "Bed shear stress prediction using ML", 1, "Q1"],
-        [2024, "Scientific Reports", "Ensemble bedload prediction", 8, "Q1"],
-        [2023, "Water Science & Technology", "Flow resistance prediction", 20, "Q2"],
-        [2023, "Journal of Hydroinformatics", "Friction factor ML", 27, "Q2"],
-        [2024, "Asian Journal of Civil Engineering", "Fly ash concrete ML", 28, "Q2"],
-        [2025, "Iranian JST", "Flexural strength prediction", 34, "Q2"],
-        [2023, "Materials Today Proceedings", "3D printing construction review", 107, "Q1"],
-        [2022, "J. Material Cycles & Waste Mgmt", "Methane waste case study", 20, "Q2"],
-        [2024, "Journal of Water Management Modeling", "Steep channel review", 19, "Q3"],
-        [2022, "Pharma Innovation Journal", "Hydroponics sustainability", 15, "NA"],
+    refs = [
+        "Mir AA, Mushtaq J, Dar AQ, Patel M (2023) A quantitative investigation of methane gas and solid waste management in mountainous Srinagar city—A case study. Journal of Material Cycles and Waste Management. https://doi.org/10.1007/s10163-022-01516-4",
+
+        "Mir AA, Patel M (2024a) Machine learning approaches for adequate prediction of flow resistance in alluvial channels with bedforms. Water Science and Technology 89:290–318. https://doi.org/10.2166/wst.2023.396",
+
+        "Mir AA, Patel M (2024b) A Comprehensive Review on Sediment Transport, Flow Dynamics, and Hazards in Steep Channels. Journal of Water Management Modeling 32:1–52. https://doi.org/10.14796/JWMM.C517",
+
+        "Mir AA, Patel M (2023) Research possibilities into the dynamics and bed morphology of steep mountain channels. Proceedings of the 3rd IAHR Young Professionals Congress. pp 116–117",
+
+        "Mir AA, Patel M (2025) Optimizing bed shear stress prediction in open flow channels: an investigation of heuristic machine learning techniques. Natural Hazards. https://doi.org/10.1007/S11069-025-07154-X",
+
+        "Mir AA, Patel M, Albalawi F, et al (2024) A comparative ensemble approach to bedload prediction using metaheuristic machine learning. Scientific Reports 14:25725. https://doi.org/10.1038/S41598-024-75118-5",
+
+        "Bassi A, Mir AA, Kumar B, Patel M (2023) A comprehensive study of various regressions and deep learning approaches for the prediction of friction factor in mobile bed channels. Journal of Hydroinformatics 25:2500–2521. https://doi.org/10.2166/HYDRO.2023.246",
+
+        "Patel M, Ahmad Mir A, Kumar B (2022) A critical review on flow over fluvial bed forms and research directions. Proceedings of the 23rd IAHR-APD Congress 2022, IIT Madras, India",
+
+        "Rather SA, Mir AA, Kapoor K, Patel M (2025) Assessment of technological developments in river morphology analysis: A comprehensive review. Lecture Notes in Civil Engineering 560:101–116. https://doi.org/10.1007/978-981-97-8895-8_7",
+
+        "Sankalp M, Gondwal A, Agnihotri AK, et al (2024) Hydrogeological study of contamination of soil and water in the vicinity of municipal dumping ground: A case study. Lecture Notes in Civil Engineering 508:219–235. https://doi.org/10.1007/978-981-97-3823-6_19",
+
+        "Singh R, Tipu RK, Mir AA, Patel M (2024) Predictive modelling of flexural strength in recycled aggregate-based concrete: A comprehensive approach with machine learning and global sensitivity analysis. Iranian Journal of Science and Technology. https://doi.org/10.1007/S40996-024-01502-W",
+
+        "Kumar R, Rathore A, Singh R, et al (2024) Prognosis of flow of fly ash and blast furnace slag-based concrete: Leveraging advanced machine learning algorithms. Asian Journal of Civil Engineering 25:2483–2497. https://doi.org/10.1007/s42107-023-00922-9",
     ]
 
-    df_pubs = pd.DataFrame(
-        pubs_data,
-        columns=["Year", "Journal", "Title", "Citations", "Quartile"]
-    )
-
-    st.dataframe(df_pubs, use_container_width=True)
-
+    for i, ref in enumerate(refs, 1):
+        st.markdown(f"**{i}.** {ref}")
 # ================= RESEARCH METRICS =================
 elif page == "📊 Research Metrics":
 
