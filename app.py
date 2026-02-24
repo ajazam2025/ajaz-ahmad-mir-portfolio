@@ -122,6 +122,7 @@ if page == "🏠 Home":
             unsafe_allow_html=True,
         )
 
+        # ✅ YOUR UPDATED TEXT
         st.markdown(
             """
             <div class='about-text'>
@@ -251,4 +252,4 @@ elif page == "📄 CV":
 
 # ================= FOOTER =================
 st.markdown("---")
-st.caption("© 2026 Ajaz Ahmad Mir | Elite Academic Portfolio")
+st.caption("© 2026 Ajaz Ahmad Mir | Academic Portfolio")
