@@ -48,33 +48,125 @@ st.sidebar.markdown("[🆔 ORCID](https://orcid.org/0000-0002-4164-4027)")
 # ================= HOME =================
 if page == "🏠 Home":
 
-    # ===== CUSTOM CSS (makes it look modern) =====
+    # ===== COMPACT CSS =====
     st.markdown("""
     <style>
+    /* Reduce top padding */
+    .block-container {
+        padding-top: 1.5rem;
+        padding-bottom: 1rem;
+        max-width: 1100px;
+    }
+
+    /* Typography */
     .name {
-        font-size: 40px;
+        font-size: 36px;
         font-weight: 700;
         margin-bottom: 0px;
     }
     .role {
-        font-size: 20px;
+        font-size: 18px;
         color: #2aa198;
         margin-top: 0px;
+        margin-bottom: 10px;
     }
     .section-title {
-        font-size: 26px;
+        font-size: 24px;
         font-weight: 600;
-        margin-top: 20px;
+        margin-top: 10px;
+        margin-bottom: 5px;
     }
     .about-text {
-        font-size: 17px;
-        line-height: 1.7;
+        font-size: 16px;
+        line-height: 1.6;
     }
     </style>
     """, unsafe_allow_html=True)
 
-    # ===== MAIN TWO-COLUMN HERO =====
-    left, right = st.columns([1, 2])
+    # ===== MAIN HERO (TIGHTER RATIO) =====
+    left, right = st.columns([0.9, 2.1], gap="small")
+
+    # ---------- LEFT ----------
+    with left:
+        st.image("profile.png.png", width=200)
+
+        st.markdown(
+            "<div class='name'>Ajaz Ahmad Mir</div>",
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            "<div class='role'>PhD Research Scholar</div>",
+            unsafe_allow_html=True,
+        )
+
+        st.markdown("""
+        **University of Alberta**  
+        **Dr B R Ambedkar NIT Jalandhar**
+        """)
+
+        st.markdown("📧 gid.ajaz@gmail.com")
+        st.markdown("📱 +91-7006231956")
+
+        st.markdown(
+            "[🎓 Google Scholar](https://scholar.google.ca/citations?user=90WNMHwAAAAJ&hl=en&oi=ao)"
+        )
+        st.markdown(
+            "[🆔 ORCID](https://orcid.org/0000-0002-4164-4027)"
+        )
+
+    # ---------- RIGHT ----------
+    with right:
+
+        st.markdown(
+            "<div class='section-title'>About me</div>",
+            unsafe_allow_html=True,
+        )
+
+        st.markdown(
+            """
+            <div class='about-text'>
+            I am a Ph.D. researcher working in the field of <b>hydraulics,
+            turbulence, and machine learning applications in water resources
+            engineering</b>. My research focuses on open channel flow,
+            sediment transport, bridge pier scour, and data-driven hydraulic
+            modelling.
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        colA, colB = st.columns(2, gap="small")
+
+        # ----- INTERESTS -----
+        with colA:
+            st.markdown(
+                "<div class='section-title'>Interests</div>",
+                unsafe_allow_html=True,
+            )
+            st.markdown("""
+            • Experimental Hydraulics  
+            • Open Channel Flow  
+            • Turbulence  
+            • Machine Learning  
+            • Sediment Transport  
+            """)
+
+        # ----- EDUCATION -----
+        with colB:
+            st.markdown(
+                "<div class='section-title'>Education</div>",
+                unsafe_allow_html=True,
+            )
+            st.markdown("""
+            🎓 **PhD, Water Resources Engineering**  
+            NIT Jalandhar, 2022–Present  
+
+            🎓 **MTech, Water Resource Engineering**  
+            NIT Srinagar, 2019–2021  
+
+            🎓 **B.E. Civil Engineering**  
+            University of Kashmir, 2014–2019  
+            """)
 
     # ---------- LEFT PANEL ----------
     with left:
