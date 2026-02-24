@@ -93,6 +93,26 @@ if page == "🏠 Home":
 
     st.success("✅ Open to Postdoctoral Positions and Research Collaborations")
 
+    # ===== FEATURED PUBLICATIONS =====
+    st.markdown("---")
+    st.header("⭐ Featured Publications")
+
+    st.markdown("""
+**Ajaz Ahmad Mir, Mahesh Patel (2025).**  
+Optimizing bed shear stress prediction in open flow channels: an investigation of heuristic machine learning techniques.  
+*Natural Hazards*, SCI (IF 4.0)
+
+**Ajaz Ahmad Mir, Mahesh Patel, Fahad Albalawi, Mohit Bajaj, Milkias Berhanu Tuka (2024).**  
+A comparative ensemble approach to bedload prediction using metaheuristic machine learning.  
+*Scientific Reports*, SCI (IF 4.3)
+
+**Ajaz Ahmad Mir, Mahesh Patel (2024).**  
+Machine learning approaches for adequate prediction of flow resistance in alluvial channels with bedforms.  
+*Water Science and Technology*, SCIE (IF 2.7)
+""")
+
+    st.info("📚 See full list in the Publications tab.")
+
     st.markdown("---")
 
     # ===== PATENT =====
