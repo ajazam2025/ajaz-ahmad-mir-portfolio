@@ -29,13 +29,15 @@ st.markdown("""
     border-radius:10px;
 }
 
+.section-box{
+    background:#eef3ff;
+    padding:15px;
+    border-radius:8px;
+}
+
 .section-title{
     font-size:22px;
     font-weight:600;
-}
-
-.stExpander{
-    background:#e8f0fe;
 }
 
 </style>
@@ -43,13 +45,13 @@ st.markdown("""
 
 # ---------------- HEADER ----------------
 st.markdown(
-    """
+"""
 <div class="header-box">
 <div class="main-title">Ajaz Ahmad Mir</div>
 PhD Research Scholar – Hydraulics & Water Resources Engineering
 </div>
 """,
-    unsafe_allow_html=True
+unsafe_allow_html=True
 )
 
 st.write("")
@@ -62,7 +64,7 @@ with col1:
 
 with col2:
     st.markdown(
-        """
+"""
 <div class="profile-card">
 
 **Institution:** Dr B R Ambedkar National Institute of Technology Jalandhar  
@@ -75,21 +77,48 @@ with col2:
 
 </div>
 """,
-        unsafe_allow_html=True
-    )
+unsafe_allow_html=True
+)
 
 st.write("")
 
-# ---------------- ACCORDION SECTIONS ----------------
+# ---------------- ALWAYS VISIBLE SECTIONS ----------------
 
-with st.expander("🔬 Areas of Interest"):
-    st.write("""
+colA, colB = st.columns(2)
+
+with colA:
+    st.markdown("### 🔬 Areas of Interest")
+    st.markdown("""
+<div class="section-box">
+
 • Experimental Hydraulics  
 • Turbulence in Open Channel Flow  
 • Sediment Transport  
 • Machine Learning in Hydraulics  
-• Steep Mountain Channels
-""")
+• Steep Mountain Channels  
+
+</div>
+""", unsafe_allow_html=True)
+
+with colB:
+    st.markdown("### 🌍 OVDF Fellowship")
+    st.markdown("""
+<div class="section-box">
+
+**Overseas Visiting Doctoral Fellow (OVDF)**  
+University of Alberta, Canada  
+
+Funded by **ANRF / SERB**
+
+Research Collaboration on  
+Hydraulics, turbulence, and sediment transport modelling.
+
+</div>
+""", unsafe_allow_html=True)
+
+st.write("")
+
+# ---------------- OTHER COLLAPSIBLE SECTIONS ----------------
 
 with st.expander("🏆 Honors and Awards"):
     st.write("""
@@ -124,8 +153,7 @@ with st.expander("📚 Journal Publications"):
 
 with st.expander("🚀 Research Projects"):
     st.write("""
-**SPARC Project – AI/ML Flood Prediction in Himalayan Regions**
-
+SPARC Project – AI/ML Flood Prediction in Himalayan Regions  
 Funding: ₹60 Lakhs
 """)
 
@@ -136,7 +164,7 @@ with st.expander("📖 Book Chapters"):
 """)
 
 # ---------------- CV DOWNLOAD ----------------
-st.write("")
+
 st.subheader("📄 Curriculum Vitae")
 
 with open("ajaz_cv_2_page 30 dec 25.pdf","rb") as file:
