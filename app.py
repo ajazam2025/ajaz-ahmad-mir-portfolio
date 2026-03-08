@@ -38,10 +38,8 @@ with col2:
     st.markdown("""
 **Institution:** Dr B R Ambedkar National Institute of Technology Jalandhar  
 
-📧 gid.ajaz@gmail.com  
-📧 ajaz.2019mcivwr010@nitsri.net  
-📧 Ajazam.ce.21@nitj.ac.in  
-📧 ajaz1@ualberta.ca  
+
+📧 ajazam.ce.21@nitj.ac.in   
 
 🔗 [Google Scholar](https://scholar.google.ca/citations?user=90WNMHwAAAAJ)  
 🔗 [LinkedIn](https://www.linkedin.com/in/ajaz-mir-40342b1a8/)  
