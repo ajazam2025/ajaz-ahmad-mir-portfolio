@@ -1,265 +1,147 @@
 import streamlit as st
-import pandas as pd
-import matplotlib.pyplot as plt
-from scholarly import scholarly
 
-# ================= PAGE CONFIG =================
+# ---------------- PAGE CONFIG ----------------
 st.set_page_config(
-    page_title="Ajaz Ahmad Mir | Academic Portfolio",
+    page_title="Ajaz Ahmad Mir",
     page_icon="🎓",
     layout="wide"
 )
 
-# ================= SCHOLAR FUNCTION =================
-@st.cache_data(ttl=86400)
-def get_scholar_data():
-    try:
-        author = scholarly.search_author_id("90WNMHwAAAAJ")
-        author = scholarly.fill(author)
-        return {
-            "citations": author.get("citedby", 0),
-            "hindex": author.get("hindex", 0),
-            "i10index": author.get("i10index", 0),
-            "publications": len(author.get("publications", [])),
-        }
-    except Exception:
-        return None
-
-# ================= SIDEBAR =================
-st.sidebar.title("🧭 Navigation")
+# ---------------- SIDEBAR ----------------
+st.sidebar.title("Navigation")
 page = st.sidebar.radio(
     "Go to",
-    ["🏠 Home", "🎓 Education", "📚 Publications",
-     "📊 Research Metrics", "📄 CV"]
+    ["Home Profile", "Publications", "CV"]
 )
 
-st.sidebar.markdown("---")
-st.sidebar.markdown("### 📬 Contact")
-st.sidebar.markdown("📧 ajazam.ce.21@nitj.ac.in")
-st.sidebar.markdown("📧 ajaz1@ualberta.ca")
-st.sidebar.markdown("📧 gid.ajaz@gmail.com")
-st.sidebar.markdown("📱 +91-7006231956")
+# ================= HOME PROFILE =================
+if page == "Home Profile":
 
-st.sidebar.markdown("### 🔗 Profiles")
-st.sidebar.markdown("[🎓 Google Scholar](https://scholar.google.ca/citations?user=90WNMHwAAAAJ&hl=en&oi=ao)")
-st.sidebar.markdown("[🆔 ORCID](https://orcid.org/0000-0002-4164-4027)")
+    st.markdown("## Ajaz Ahmad Mir")
 
-# ================= HOME =================
-if page == "🏠 Home":
+    col1, col2 = st.columns([1,4])
 
-    # ===== COMPACT CSS =====
-    st.markdown("""
-    <style>
-    .block-container {
-        padding-top: 1.2rem;
-        padding-bottom: 1rem;
-        max-width: 1050px;
-    }
-    .name {
-        font-size: 34px;
-        font-weight: 700;
-        margin-bottom: 0px;
-    }
-    .role {
-        font-size: 18px;
-        color: #2aa198;
-        margin-top: 0px;
-        margin-bottom: 8px;
-    }
-    .section-title {
-        font-size: 22px;
-        font-weight: 600;
-        margin-top: 8px;
-        margin-bottom: 4px;
-    }
-    .about-text {
-        font-size: 15.5px;
-        line-height: 1.6;
-    }
-    </style>
-    """, unsafe_allow_html=True)
+    with col1:
+        st.image("profile.png.png", width=160)
 
-    # ===== HERO =====
-    left, right = st.columns([1, 2], gap="small")
-
-    # ---------- LEFT ----------
-    with left:
-        st.image("profile.png.png", width=190)
-
-        st.markdown("<div class='name'>Ajaz Ahmad Mir</div>", unsafe_allow_html=True)
-        st.markdown("<div class='role'>PhD Research Scholar</div>", unsafe_allow_html=True)
-
+    with col2:
         st.markdown("""
-        **University of Alberta**  
-        **Dr B R Ambedkar NIT Jalandhar**
+        **PhD Research Scholar**  
+        **Specialization:** Hydraulics & Water Resources Engineering  
+        **Institution:** Dr B R Ambedkar National Institute of Technology Jalandhar  
+
+        📧 gid.ajaz@gmail.com  
+        📱 +91-7006231956  
+
+        [Google Scholar](https://scholar.google.ca/citations?user=90WNMHwAAAAJ&hl=en)  
+        [ORCID](https://orcid.org/0000-0002-4164-4027)
         """)
 
-        st.markdown("📧 gid.ajaz@gmail.com")
-        st.markdown("📱 +91-7006231956")
+    st.divider()
 
-        st.markdown("[🎓 Google Scholar](https://scholar.google.ca/citations?user=90WNMHwAAAAJ&hl=en&oi=ao)")
-        st.markdown("[🆔 ORCID](https://orcid.org/0000-0002-4164-4027)")
+    # -------- AREAS OF INTEREST --------
+    with st.expander("Areas of Interest"):
+        st.markdown("""
+        - Experimental Hydraulics  
+        - Turbulence in Open Channel Flow  
+        - Sediment Transport  
+        - Steep Mountain Channels  
+        - Machine Learning in Hydraulics
+        """)
 
-    # ---------- RIGHT ----------
-    with right:
+    # -------- HONORS & AWARDS --------
+    with st.expander("Honors and Awards"):
+        st.markdown("""
+        - GATE Qualified (Score: 463)  
+        - ANRF / SERB Overseas Visiting Fellowship  
+        - PhD Fellowship – NIT Jalandhar  
+        - MTech GATE Fellowship – NIT Srinagar  
+        - Minority Scholarship – University of Kashmir
+        """)
 
-        st.markdown("<div class='section-title'>About me</div>", unsafe_allow_html=True)
+    # -------- PROFESSIONAL BACKGROUND --------
+    with st.expander("Professional Background"):
+        st.markdown("""
+        **Visiting Doctoral Fellow**  
+        University of Alberta, Canada  
+        2024–2025
 
-        st.markdown(
-            """
-            <div class='about-text'>
-            I am a Ph.D. researcher working in the field of <b>hydraulics,
-            turbulence, and machine learning applications in water resources
-            engineering</b>. My research focuses on open channel flow,
-            sediment transport, and data-driven hydraulic modelling in
-            steep mountain channels. I was also SERB/ANRF OVDF fellow
-            at University of Alberta, Canada.
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+        **PhD Research Scholar**  
+        NIT Jalandhar  
+        2022–Present
+        """)
 
-        colA, colB = st.columns(2, gap="small")
+    # -------- EDUCATION --------
+    with st.expander("Educational Details"):
+        st.markdown("""
+        **PhD – Water Resources Engineering**  
+        NIT Jalandhar (2022–Present)
 
-        with colA:
-            st.markdown("<div class='section-title'>Interests</div>", unsafe_allow_html=True)
-            st.markdown("""
-            • Experimental Hydraulics  
-            • Open Channel Flow  
-            • Turbulence  
-            • Machine Learning  
-            • Sediment Transport  
-            • Bedforms  
-            • Roughness in steep channels  
-            """)
+        **MTech – Water Resource Engineering**  
+        NIT Srinagar (2019–2021)
 
-        with colB:
-            st.markdown("<div class='section-title'>Education</div>", unsafe_allow_html=True)
-            st.markdown("""
-            🎓 **PhD, Water Resources Engineering**  
-            NIT Jalandhar, 2022–Present  
+        **B.E – Civil Engineering**  
+        University of Kashmir (2014–2019)
+        """)
 
-            🎓 **MTech, Water Resource Engineering**  
-            NIT Srinagar, 2019–2021  
+    # -------- JOURNAL PUBLICATIONS --------
+    with st.expander("Journal Publications"):
+        st.markdown("""
+        **Mir AA, Patel M (2025)**  
+        Optimizing bed shear stress prediction in open flow channels.  
+        *Natural Hazards*
 
-            🎓 **B.E. Civil Engineering**  
-            University of Kashmir, 2014–2019  
-            """)
+        **Mir AA et al. (2024)**  
+        Comparative ensemble approach to bedload prediction.  
+        *Scientific Reports*
 
-    # ===== METRICS =====
-    st.markdown("---")
-    st.subheader("📈 Academic Snapshot")
+        **Mir AA, Patel M (2024)**  
+        Machine learning prediction of flow resistance in alluvial channels.  
+        *Water Science & Technology*
 
-    scholar_data = get_scholar_data()
-    m1, m2, m3, m4 = st.columns(4)
+        **Mir AA et al. (2022)**  
+        Methane gas and solid waste management case study.  
+        *Journal of Material Cycles & Waste Management*
+        """)
 
-    if scholar_data:
-        m1.metric("Publications", scholar_data["publications"])
-        m2.metric("Citations", scholar_data["citations"])
-        m3.metric("h-index", scholar_data["hindex"])
-        m4.metric("i10-index", scholar_data["i10index"])
-    else:
-        m1.metric("Publications", "—")
-        m2.metric("Citations", "—")
-        m3.metric("h-index", "—")
-        m4.metric("i10-index", "—")
+    # -------- PROJECTS --------
+    with st.expander("Research Projects"):
+        st.markdown("""
+        **SPARC Project – AI/ML Flood Prediction in Himalayan Regions**  
+        Funding: ₹60 Lakhs
+        """)
 
-    # ===== FEATURED PUBLICATIONS =====
-    st.markdown("---")
-    st.header("⭐ Featured Publications")
+    # -------- BOOK CHAPTERS --------
+    with st.expander("Book / Book Chapters"):
+        st.markdown("""
+        - Technological Developments in River Morphology – Springer Nature (2025)
+        - Hydrogeological Study of Soil and Water Contamination (2025)
+        """)
 
-    st.markdown("""
-**Mir AA, Patel M (2025).** Optimizing bed shear stress prediction in open flow channels. *Natural Hazards* (SCI, IF 4.0)
+# ================= PUBLICATIONS PAGE =================
+elif page == "Publications":
 
-**Mir AA, Patel M, Albalawi F, Bajaj M, Tuka MB (2024).** Comparative ensemble approach to bedload prediction. *Scientific Reports* (SCI, IF 4.3)
-
-**Mir AA, Patel M (2024).** Machine learning prediction of flow resistance in alluvial channels. *Water Science & Technology* (SCIE, IF 2.7)
-""")
-
-    st.success("✅ Open to Postdoctoral Positions and Research Collaborations")
-
-# ================= EDUCATION =================
-elif page == "🎓 Education":
-
-    st.title("🎓 Education")
-    st.markdown("""
-**University of Alberta, Canada**  
-Overseas Visiting Doctoral Fellow (ANRF/OVDF)  
-*Sept 2024 – Aug 2025*
-
-**Dr B R Ambedkar NIT Jalandhar, India**  
-Ph.D. Water Resources Engineering  
-*2022 – Ongoing*
-""")
-
-# ================= PUBLICATIONS =================
-elif page == "📚 Publications":
-
-   # ================= PUBLICATIONS =================
-elif page == "📚 Publications":
-
-    st.title("📚 Publications")
-
-    st.caption("Complete peer-reviewed journal publications")
+    st.title("Publications")
 
     publications = [
-        "Ajaz Ahmad Mir, Mahesh Patel (2025). Optimizing bed shear stress prediction in open flow channels: an investigation of heuristic machine learning techniques. Natural Hazards (SCI, IF 4.0).",
-
-        "Ajaz Ahmad Mir, Mahesh Patel, Fahad Albalawi, Mohit Bajaj, Milkias Berhanu Tuka (2024). A comparative ensemble approach to bedload prediction using metaheuristic machine learning. Scientific Reports (SCI, IF 4.3).",
-
-        "Ajaz Ahmad Mir, Mahesh Patel (2024). Machine learning approaches for adequate prediction of flow resistance in alluvial channels with bedforms. Water Science & Technology (SCIE, IF 2.7).",
-
-        "Ajaz Ahmad Mir, Mahesh Patel (2024). A comprehensive review on sediment transport, flow dynamics, and hazards in steep channels. Journal of Water Management Modeling (ESCI).",
-
-        "Ajaz Ahmad Mir, Jasir Mushtaq, Abdul Qayoom Dar, Mahesh Patel (2022). A quantitative investigation of methane gas and solid waste management in mountainous Srinagar city — A case study. Journal of Material Cycles and Waste Management (SCI, IF 3.2).",
-
-        "Akshita Bassi, Ajaz Ahmad Mir, Bimlesh Kumar, Mahesh Patel (2023). A comprehensive study of various regressions and deep learning approaches for prediction of friction factor in mobile bed channels. Journal of Hydroinformatics (SCI, IF 2.7).",
-
-        "Rahul Kumar, Ayush Rathore, Rajwinder Singh, Ajaz Ahmad Mir, Rupesh Kumar Tipu, Mahesh Patel (2023). Prognosis of flow of fly ash and blast furnace slag-based concrete using advanced machine learning algorithms. Asian Journal of Civil Engineering (SCOPUS).",
-
-        "Rajwinder Singh, Rupesh Kumar Tipu, Ajaz Ahmad Mir, Mahesh Patel (2024). Predictive modelling of flexural strength in recycled aggregate-based concrete using machine learning and global sensitivity analysis. Iranian Journal of Science and Technology (SCI, IF 1.6).",
+        "Mir AA, Patel M (2025). Optimizing bed shear stress prediction in open flow channels. Natural Hazards.",
+        "Mir AA et al. (2024). Comparative ensemble approach to bedload prediction. Scientific Reports.",
+        "Mir AA, Patel M (2024). Machine learning prediction of flow resistance in alluvial channels. Water Science & Technology.",
+        "Mir AA et al. (2022). Methane gas and solid waste management case study. Journal of Material Cycles & Waste Management."
     ]
 
-    for i, pub in enumerate(publications, 1):
-        st.markdown(f"**{i}.** {pub}")
-
-    st.info("🔗 For live citation updates, visit my Google Scholar profile.")
-
-# ================= RESEARCH METRICS =================
-elif page == "📊 Research Metrics":
-
-    st.title("📊 Research Metrics")
-
-    data = {
-        "Year": ["2022", "2023", "2024", "2025"],
-        "Publications": [2, 3, 4, 1],
-    }
-
-    df = pd.DataFrame(data)
-
-    fig, ax = plt.subplots()
-    ax.bar(df["Year"], df["Publications"])
-    ax.set_xlabel("Year")
-    ax.set_ylabel("Publications")
-    ax.set_title("Research Productivity")
-    st.pyplot(fig)
+    for i, pub in enumerate(publications,1):
+        st.write(f"{i}. {pub}")
 
 # ================= CV =================
-elif page == "📄 CV":
+elif page == "CV":
 
-    st.title("📄 Curriculum Vitae")
+    st.title("Curriculum Vitae")
 
-    try:
-        with open("ajaz_cv_2_page 30 dec 25.pdf", "rb") as file:
-            st.download_button(
-                label="⬇️ Download Full CV",
-                data=file,
-                file_name="Ajaz_Ahmad_Mir_CV.pdf",
-                mime="application/pdf",
-            )
-    except:
-        st.warning("Please upload your CV PDF to the repository.")
-
-# ================= FOOTER =================
-st.markdown("---")
-st.caption("© 2026 Ajaz Ahmad Mir | Academic Portfolio")
+    with open("ajaz_cv_2_page 30 dec 25.pdf","rb") as file:
+        st.download_button(
+            label="Download CV",
+            data=file,
+            file_name="Ajaz_Ahmad_Mir_CV.pdf",
+            mime="application/pdf"
+        )
