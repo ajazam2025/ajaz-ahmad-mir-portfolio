@@ -47,7 +47,6 @@ with col2:
 🆔 ORCID: 0000-0002-4164-4027  
 
 Scopus Author ID: 57219854867  
-Scopus Author ID: 58806681700
 """)
 
 # ---------------- BIOGRAPHY ----------------
@@ -73,7 +72,10 @@ st.markdown("""
 • Sediment Transport  
 • Steep Channels  
 • Bedform Dynamics  
-• Machine Learning in Hydraulics  
+• Machine Learning in Hydraulics
+• Advanced CFD
+• Interdisplinary  
+
 
 </div>
 """, unsafe_allow_html=True)
@@ -117,33 +119,19 @@ University of Kashmir (2014–2019)
 with st.expander("Journal Publications"):
 
     st.write("""
-1. Mir AA, Patel M (2025)  
-Optimizing bed shear stress prediction in open flow channels.  
-Natural Hazards  
+Mir, A. A., & Patel, M. (2025). Optimizing bed shear stress prediction in open flow channels. Natural Hazards.
 
-2. Mir AA et al. (2024)  
-A comparative ensemble approach to bedload prediction using metaheuristic machine learning.  
-Scientific Reports  
+Mir, A. A., et al. (2024). A comparative ensemble approach to bedload prediction using metaheuristic machine learning. Scientific Reports.
 
-3. Mir AA, Patel M (2024)  
-Machine learning approaches for adequate prediction of flow resistance in alluvial channels.  
-Water Science & Technology  
+Mir, A. A., & Patel, M. (2024). Machine learning approaches for adequate prediction of flow resistance in alluvial channels. Water Science & Technology.
 
-4. Bassi A, Mir AA et al. (2023)  
-Prediction of friction factor in mobile bed channels.  
-Journal of Hydroinformatics  
+Bassi, A., Mir, A. A., et al. (2023). Prediction of friction factor in mobile bed channels. Journal of Hydroinformatics.
 
-5. Tabassum T, Mir AA (2023)  
-3D printing technology for sustainable construction.  
-Materials Today: Proceedings  
+Tabassum, T., & Mir, A. A. (2023). 3D printing technology for sustainable construction. Materials Today: Proceedings.
 
-6. Mir AA et al. (2023)  
-Methane gas and solid waste management in mountainous Srinagar city.  
-Journal of Material Cycles and Waste Management  
+Mir, A. A., et al. (2023). Methane gas and solid waste management in mountainous Srinagar city. Journal of Material Cycles and Waste Management.
 
-7. Kumar R et al. (2024)  
-Machine learning modelling of fly ash and slag concrete.  
-Asian Journal of Civil Engineering
+Kumar, R., et al. (2024). Machine learning modelling of fly ash and slag concrete. Asian Journal of Civil Engineering.
 """)
 
 # ---------------- REVIEW ACTIVITY ----------------
